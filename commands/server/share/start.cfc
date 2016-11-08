@@ -7,7 +7,7 @@
 component {
 
     property name="serverService" inject="ServerService";
-    property name="ngrokPath" inject="commandbox:moduleSettings:box-ngrok:ngrokPath";
+    property name="ngrokService" inject="NgrokService@box-ngrok";
 
     variables.tunnelsEndpoint = "http://127.0.0.1:4040/api/tunnels";
 
@@ -39,26 +39,31 @@ component {
             sleep( 1000 );
         }
 
-        ifNgrokIsNotRunning( function() {
-            startNgrok();
+        ngrokService.ifNgrokIsNotRunning( function() {
+            ngrokService.startNgrok();
             sleep( 1000 );
-            ifNgrokIsNotRunning( function() {
+            ngrokService.ifNgrokIsNotRunning( function() {
                 print.whiteOnRedLine( "Not sure what happened...." ).line();
                 print.line( serializeJson( e ) ).line();
                 return;
             } );
         } );
 
-        var tunnelNames = getTunnelNames();
+        var tunnelNames = ngrokService.getTunnelNames();
 
-        if ( areTunnelsOpen( tunnelNames ) ) {
+        if ( ngrokService.areTunnelsOpen() ) {
             print.blackOnYellowLine(
                 "Only one server can be shared at a time.  Stopping any other tunnels."
             ).line();
-            stopAllRunningTunnels( tunnelNames );
+            ngrokService.stopAllRunningTunnels();
         }
 
-        var tunnelUrl = createNewTunnel( serverInfo );
+        var tunnel = ngrokService.createNewTunnel(
+            name = serverInfo.name,
+            port = serverInfo.port,
+            isSSL = serverInfo.sslEnable
+        );
+        var tunnelUrl = tunnel.public_url;
         
         print.line( "Server shared successfully at:" );
         print.boldYellowLine( tunnelUrl );
@@ -82,55 +87,6 @@ component {
 
     private boolean function isServerRunning( required struct serverInfo ) {
         return serverInfo.status == "running";
-    }
-
-    private void function ifNgrokIsNotRunning( callback ) {
-        try {
-            cfhttp( url = variables.tunnelsEndpoint, throwOnError = true );
-        }
-        catch ( any e ) {
-            callback( e );
-        }
-    }
-
-    private void function startNgrok() {
-        var processBuilder = createObject( "java", "java.lang.ProcessBuilder" );
-        processBuilder.init( [ "#ngrokPath#", "start", "--none" ] );
-        processBuilder.start();
-    }
-
-    private array function getTunnelNames() {
-        cfhttp( url = variables.tunnelsEndpoint, throwOnError = true );
-        return deserializeJson( cfhttp.filecontent ).tunnels
-            .map( function( tunnel ) {
-                return tunnel.name;
-            } );
-    }
-
-    private boolean function areTunnelsOpen( required array tunnels ) {
-        return tunnels.len() > 0;
-    }
-
-    private void function stopAllRunningTunnels( required array tunnels ) {
-        for ( var tunnel in tunnels ) {
-            cfhttp( url = "#variables.tunnelsEndpoint#/#tunnel#" method = "DELETE" );
-        }
-    }
-
-    private string function createNewTunnel( required struct serverInfo ) {
-        cfhttp( url = variables.tunnelsEndpoint, method = "POST", throwOnError = true ) {
-            cfhttpparam( type = "header" name = "content-type", value = "application/json" );
-            cfhttpparam( type = "body", value = serializeJson( {
-                "addr" = serverInfo.port,
-                "proto" = "http",
-                "name" = serverInfo.name
-            } ) );
-        }
-
-        var response = deserializeJSON( cfhttp.filecontent );
-        return serverInfo.sslEnable ?
-            response.public_url :
-            replace( response.public_url, "https://", "http://" );
     }
 
     /**
