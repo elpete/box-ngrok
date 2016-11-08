@@ -1,6 +1,7 @@
 {
     "name":"CommandBox Ngrok",
     "version":"1.0.0",
+    "location":"elpete/box-ngrok#v1.0.0",
     "author":"Eric Peterson",
     "homepage":"https://github.com/elpete/box-ngrok",
     "documentation":"https://github.com/elpete/box-ngrok",
@@ -18,6 +19,11 @@
         "ngrok",
         "share"
     ],
+    "scripts":{
+        "postVersion":"package set location='elpete/box-ngrok#v`package version`'",
+        "onRelease":"publish",
+        "postPublish":"!git push && !git push --tags"
+    },
     "private":false,
     "license":[
         {
