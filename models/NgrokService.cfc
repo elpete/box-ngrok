@@ -34,10 +34,12 @@ component singleton {
         return getTunnels().len() > 0;
     }
 
+    public void function stopTunnel( required string tunnelName ) {
+        cfhttp( url = "#variables.tunnelsEndpoint#/#tunnelName#" method = "DELETE" );
+    }
+
     public void function stopAllRunningTunnels() {
-        getTunnelNames().each( function( tunnel ) {
-            cfhttp( url = "#variables.tunnelsEndpoint#/#tunnel#" method = "DELETE" );
-        } );
+        getTunnelNames().each( stopTunnel );
     }
 
     public struct function createNewTunnel(

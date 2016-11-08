@@ -4,6 +4,10 @@ component {
         settings = {
             ngrokPath = "#modulePath#/bin/#getNgrokBinaryName()#"
         };
+
+        interceptors = [
+            { class = "#moduleMapping#.interceptors.StopTunnelOnServerStopInterceptor" }
+        ];
     }
 
     private string function getNgrokBinaryName() {
