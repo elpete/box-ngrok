@@ -1,0 +1,28 @@
+{
+    "name":"CommandBox Ngrok",
+    "version":"1.0.0",
+    "author":"Eric Peterson",
+    "homepage":"https://github.com/elpete/box-ngrok",
+    "documentation":"https://github.com/elpete/box-ngrok",
+    "repository":{
+        "type":"git",
+        "URL":"https://github.com/elpete/box-ngrok"
+    },
+    "bugs":"https://github.com/elpete/box-ngrok/issues",
+    "slug":"box-ngrok",
+    "shortDescription":"Commands to share the current server via ngrok",
+    "instructions":"https://github.com/elpete/box-ngrok",
+    "type":"commandbox-modules",
+    "keywords":[
+        "server",
+        "ngrok",
+        "share"
+    ],
+    "private":false,
+    "license":[
+        {
+            "type":"MIT",
+            "URL":"https://github.com/elpete/box-ngrok/blob/master/LICENSE"
+        }
+    ]
+}
