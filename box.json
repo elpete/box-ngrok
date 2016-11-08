@@ -1,7 +1,7 @@
 {
     "name":"CommandBox Ngrok",
-    "version":"1.0.0",
-    "location":"elpete/box-ngrok#v1.0.0",
+    "version":"1.1.0",
+    "location":"elpete/box-ngrok#v1.1.0",
     "author":"Eric Peterson",
     "homepage":"https://github.com/elpete/box-ngrok",
     "documentation":"https://github.com/elpete/box-ngrok",
