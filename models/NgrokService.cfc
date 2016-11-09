@@ -13,6 +13,17 @@ component singleton {
         }
     }
 
+    public void function ifNgrokIsRunning( callback = function() {} ) {
+        try {
+            cfhttp( url = variables.tunnelsEndpoint, throwOnError = true );
+        }
+        catch ( any e ) {
+            return;
+        }
+
+        callback();
+    }
+
     public void function startNgrok() {
         var processBuilder = createObject( "java", "java.lang.ProcessBuilder" );
         processBuilder.init( [ "#ngrokPath#", "start", "--none" ] );
