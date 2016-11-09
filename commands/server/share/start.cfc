@@ -39,15 +39,17 @@ component {
             sleep( 1000 );
         }
 
+        var exit = false;
         ngrokService.ifNgrokIsNotRunning( function() {
             ngrokService.startNgrok();
             sleep( 1000 );
             ngrokService.ifNgrokIsNotRunning( function() {
                 print.whiteOnRedLine( "Not sure what happened...." ).line();
                 print.line( serializeJson( e ) ).line();
-                return;
+                exit = true;
             } );
         } );
+        if ( exit ) return;
 
         var tunnelNames = ngrokService.getTunnelNames();
 
