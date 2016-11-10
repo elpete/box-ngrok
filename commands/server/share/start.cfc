@@ -35,7 +35,11 @@ component {
 
         if ( ! isServerRunning( serverInfo ) ) {
             print.cyanLine( "The server needs to be started first.  Doing that now." ).line();
-            command( "server start" ).run();
+            var serverArgs = duplicate( arguments );
+            serverArgs.openBrowser = false;
+            command( "server start" )
+                .params( argumentCollection = serverArgs )
+                .run();
             sleep( 1000 );
         }
 
