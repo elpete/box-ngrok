@@ -3,6 +3,7 @@ component singleton {
     property name="ngrokPath" inject="commandbox:moduleSettings:box-ngrok:ngrokPath";
 
     variables.tunnelsEndpoint = "http://127.0.0.1:4040/api/tunnels";
+    variables.processs = '';
 
     public void function ifNgrokIsNotRunning( callback = function() {} ) {
         try {
@@ -27,7 +28,7 @@ component singleton {
     public void function startNgrok() {
         var processBuilder = createObject( "java", "java.lang.ProcessBuilder" );
         processBuilder.init( [ "#ngrokPath#", "start", "--none" ] );
-        processBuilder.start();
+        variables.processs = processBuilder.start();
     }
 
     public array function getTunnels() {
@@ -51,6 +52,10 @@ component singleton {
 
     public void function stopAllRunningTunnels() {
         getTunnelNames().each( stopTunnel );
+        if( !isSimpleValue( variables.processs ) ) {
+        	variables.processs.destroy();
+        }
+        
     }
 
     public struct function createNewTunnel(
