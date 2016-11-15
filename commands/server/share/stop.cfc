@@ -1,6 +1,5 @@
 /**
-* Shares the current directory's server via ngrok.
-* Make sure you are running this command in the root of your app with a server started.
+* Stops an Ngrok share
 */
 component {
 
