@@ -5,7 +5,7 @@
 ## Usage
 
 ```bash
-server share
+server share start
 # or
 share
 ```
