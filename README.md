@@ -3,12 +3,19 @@
 ### Ngrok integration with CommandBox
 
 ## Usage
-
+Use the commands that come with this module to start and stop Ngrok shares.
+### Start a share for a running server
 ```bash
 server share start
 # or
 share
 ```
+### Stop a share
+```bash
+server share stop
+```
+
+If you stop a server that is being shared, the Ngrok tunnel will be closed for you.
 
 It will:
 
