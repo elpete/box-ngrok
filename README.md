@@ -4,7 +4,7 @@
 
 ## Usage
 Use the commands that come with this module to start and stop Ngrok shares.
-### Start a share for a running server
+### Start a share
 ```bash
 server share start
 # or
