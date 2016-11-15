@@ -2,6 +2,9 @@
 
 ### Ngrok integration with CommandBox
 
+Ngrok is a service that will proxy a locally-running server to the Internet where any coworker, friend, or client with a browser 
+can view the local site site you have running.  Use this to demo a new site or ask a friend to look at an error for you.  This is also great for testing integration with 3rd party systems (like Stripe webhooks) while still developing on localhost!
+
 ## Usage
 Use the commands that come with this module to start and stop Ngrok shares.
 ### Start a share
@@ -28,4 +31,4 @@ server share stop
 If you stop a server that is being shared, the Ngrok tunnel will be closed for you.
 
 
-Great for testing integration with 3rd party systems (like Stripe webhooks) while still developing on localhost!
+
