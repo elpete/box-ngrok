@@ -10,12 +10,6 @@ server share start
 # or
 share
 ```
-### Stop a share
-```bash
-server share stop
-```
-
-If you stop a server that is being shared, the Ngrok tunnel will be closed for you.
 
 It will:
 
@@ -25,5 +19,13 @@ It will:
 4. Create the new Ngrok tunnel.
 5. Display the share url.
 6. Open the share url in the browser.
+
+### Stop a share
+```bash
+server share stop
+```
+
+If you stop a server that is being shared, the Ngrok tunnel will be closed for you.
+
 
 Great for testing integration with 3rd party systems (like Stripe webhooks) while still developing on localhost!
