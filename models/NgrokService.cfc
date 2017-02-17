@@ -60,7 +60,7 @@ component singleton {
 
     public struct function createNewTunnel(
         required string name,
-        required numeric port,
+        required string port, // May be host:port
         boolean isSSL = false,
         string protocol = "http"
     ) {
