@@ -9,6 +9,17 @@ component {
             { class = "#moduleMapping#.interceptors.StopTunnelOnServerStopInterceptor" }
         ];
     }
+    function onLoad(){
+      var fs = wirebox.getInstance( "FileSystem" );
+      if ( fs.isMac() ) {
+            cfexecute(
+                variable = "standardOutput",
+                name = "chmod",
+                arguments = "755 #modulePath#/bin/#getNgrokBinaryName()#",
+                timeout = 1
+            );
+        }
+    }
 
     private string function getNgrokBinaryName() {
         var fs = wirebox.getInstance( "FileSystem" );
