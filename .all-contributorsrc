@@ -29,6 +29,16 @@
         "review",
         "talk"
       ]
+    },
+    {
+      "login": "byandrewdavis",
+      "name": "Andrew Davis",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/2083202?v=3",
+      "profile": "http://www.bluewatersolutions.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ]
 }
