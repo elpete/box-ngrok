@@ -9,11 +9,11 @@ component {
             { class = "#moduleMapping#.interceptors.StopTunnelOnServerStopInterceptor" }
         ];
     }
-    function onLoad(){
+
+    function onLoad() {
       var fs = wirebox.getInstance( "FileSystem" );
       if ( fs.isMac() ) {
             cfexecute(
-                variable = "standardOutput",
                 name = "chmod",
                 arguments = "755 #modulePath#/bin/#getNgrokBinaryName()#",
                 timeout = 1
