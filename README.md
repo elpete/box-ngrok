@@ -2,10 +2,6 @@
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/TQMfPZtDP7SHs7UgJVGg61uH/elpete/box-ngrok'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/TQMfPZtDP7SHs7UgJVGg61uH/elpete/box-ngrok.svg' />
-</a>
-
 ### Ngrok integration with CommandBox
 
 Ngrok is a service that will proxy a locally-running server to the Internet where any coworker, friend, or client with a browser 
