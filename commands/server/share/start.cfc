@@ -47,7 +47,7 @@ component {
         ngrokService.ifNgrokIsNotRunning( function() {
             ngrokService.startNgrok();
             sleep( 1000 );
-            ngrokService.ifNgrokIsNotRunning( function() {
+            ngrokService.ifNgrokIsNotRunning( function(e) {
                 print.whiteOnRedLine( "Not sure what happened...." ).line();
                 print.line( serializeJson( e ) ).line();
                 exit = true;
