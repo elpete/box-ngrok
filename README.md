@@ -28,6 +28,8 @@ It will:
 ### Stop a share
 ```bash
 server share stop
+# or
+unshare
 ```
 
 If you stop a server that is being shared, the Ngrok tunnel will be closed for you.
