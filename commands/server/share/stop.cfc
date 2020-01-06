@@ -1,5 +1,7 @@
 /**
-* Stops an Ngrok share
+* Stops an Ngrok share and closes tunnel.
+*
+* @aliases "unshare"
 */
 component {
 
