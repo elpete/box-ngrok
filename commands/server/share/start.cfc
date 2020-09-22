@@ -66,7 +66,7 @@ component {
 
         var tunnel = ngrokService.createNewTunnel(
             name = serverInfo.name,
-            port = serverInfo.host & ':' & serverInfo.port,
+            port = ((serverInfo.host=="0.0.0.0") ? "127.0.0.1":serverInfo.host) & ':' & serverInfo.port,
             isSSL = serverInfo.sslEnable
         );
         var tunnelUrl = tunnel.public_url;
