@@ -23,10 +23,21 @@ component {
 
     private string function getNgrokBinaryName() {
         var fs = wirebox.getInstance( "FileSystem" );
-        if ( fs.isWindows() ) return "ngrok-windows.exe";
-        if ( fs.isLinux() ) return "ngrok-linux";
-        if ( fs.isMac() ) return "ngrok-mac";
-        return "ngrok";
+        if ( fs.isWindows() ) {
+            return "ngrok-windows.exe";
+        }
+        if ( fs.isLinux() ) {
+            return isArm() ? "ngrok-linux-arm" : "ngrok-linux-intel";
+        }
+        if ( fs.isMac() ) {
+            return isArm() ? "ngrok-mac-arm" : "ngrok-mac-intel";
+        }
+        throw( "Unsupported platform" );
+    }
+
+    private boolean function isArm() {
+        var systemSettings = wirebox.getInstance( "SystemSettings" );
+        return systemSettings.getSystemSetting( 'os.arch', '' ).findNoCase( 'arm' ) || systemSettings.getSystemSetting( 'os.arch', '' ).findNoCase( 'aarch' );
     }
 
 }
