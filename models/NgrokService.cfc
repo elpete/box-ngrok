@@ -32,7 +32,9 @@ component singleton {
     }
 
     public array function getTunnels() {
-        cfhttp( url = variables.tunnelsEndpoint, throwOnError = true );
+        cfhttp( url = variables.tunnelsEndpoint, throwOnError = true ) {
+            cfhttpparam( type = "header" name = "Content-Type", value = "application/json" );
+        }
         return deserializeJSON( cfhttp.filecontent ).tunnels;
     }
 
@@ -47,7 +49,9 @@ component singleton {
     }
 
     public void function stopTunnel( required string tunnelName ) {
-        cfhttp( url = "#variables.tunnelsEndpoint#/#tunnelName#" method = "DELETE" );
+        cfhttp( url = "#variables.tunnelsEndpoint#/#tunnelName#" method = "DELETE" ) {
+            cfhttpparam( type = "header" name = "Content-Type", value = "application/json" );
+        }
     }
 
     public void function stopAllRunningTunnels() {
